@@ -732,8 +732,8 @@ fn main() -> Result<()> {
     });
 
     if cli.help {
-        let usage = r###"
-    elm-spa-upgrade [FLAG]... [OPTION]... [PATH] [TEMPLATE]"###;
+        let usage = format!(r###"
+    {} [FLAG]... [OPTION]... [PATH] [TEMPLATE]"###, env!("CARGO_PKG_NAME"));
 
         let flags = r###"
     --                 Denotes the end of command-line flags and options
@@ -749,7 +749,8 @@ fn main() -> Result<()> {
                     Options are - static|element|sandbox|advanced"###;
 
         let help = format!(
-            "elm-spa-upgrade {}\n{}\n{}\n\nUSAGE:{}\n\nFLAGS:{}\n\nARGS:{}",
+            "{} {}\n{}\n{}\n\nUSAGE:{}\n\nFLAGS:{}\n\nARGS:{}",
+            env!("CARGO_PKG_NAME"),
             env!("CARGO_PKG_VERSION"),
             env!("CARGO_PKG_AUTHORS"),
             env!("CARGO_PKG_DESCRIPTION"),

@@ -1,6 +1,6 @@
 [package]
-name = "elm-spa-upgrade"
-description = "Helper utility to auto upgrade elm-spa generated pages."
+name = "elm-spa-migrate"
+description = "Helper utility to auto migrate elm-spa generated pages."
 version = "0.1.0"
 edition = "2018"
 
