@@ -432,24 +432,20 @@ impl Page {
     fn to(mut self, pagetype: PageType, shared: bool, request: bool) -> Self {
         let mut blocks = vec![];
 
-        if shared
-            && !self.blocks.iter().any(|b| match b {
-                Block::Import(m) => m.name == "Shared",
-                _ => false,
-            })
-        {
+        if !self.blocks.iter().any(|b| match b {
+            Block::Import(m) => m.name == "Shared",
+            _ => false,
+        }) {
             blocks.push(Block::Import(Module {
                 name: "Shared".into(),
                 exposing: None,
             }))
         };
 
-        if request
-            && !self.blocks.iter().any(|b| match b {
-                Block::Import(m) => m.name == "Request",
-                _ => false,
-            })
-        {
+        if !self.blocks.iter().any(|b| match b {
+            Block::Import(m) => m.name == "Request",
+            _ => false,
+        }) {
             blocks.push(Block::Import(Module {
                 name: "Request".into(),
                 exposing: Some("Request".into()),
@@ -732,14 +728,17 @@ fn main() -> Result<()> {
     });
 
     if cli.help {
-        let usage = format!(r###"
-    {} [FLAG]... [OPTION]... [PATH] [TEMPLATE]"###, env!("CARGO_PKG_NAME"));
+        let usage = format!(
+            r###"
+    {} [FLAG]... [OPTION]... [PATH] [TEMPLATE]"###,
+            env!("CARGO_PKG_NAME")
+        );
 
         let flags = r###"
     --                 Denotes the end of command-line flags and options
     -s  --shared       Pass the shared model to the page functions
     -r  --request      Pass the request object to the page functions
-    -d  --dry-run      Print the result without overwriting file
+        --dry-run      Print the result without overwriting file
     -h, --help         Print help information
     -V, --version      Print version information"###;
 
