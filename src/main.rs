@@ -55,7 +55,7 @@ impl PageType {
     }
 
     fn page_template(self, shared: bool, request: bool) -> String {
-        let (s_sig, r_sig, s_arg, r_arg) = _fmt_defs(shared, request);
+        let (_, _, s_arg, r_arg) = _fmt_defs(shared, request);
         match self {
             PageType::Static => format!(
                 indoc! {r###"
